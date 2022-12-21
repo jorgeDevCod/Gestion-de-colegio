@@ -1,0 +1,692 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BDCOLEGIOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ALUMNO">
+    <Key>
+      <PropertyRef Name="IdAlumno" />
+    </Key>
+    <Property Name="IdAlumno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ValorCodigo" Type="int" />
+    <Property Name="Codigo" Type="varchar" MaxLength="50" />
+    <Property Name="Nombres" Type="varchar" MaxLength="100" />
+    <Property Name="Apellidos" Type="varchar" MaxLength="100" />
+    <Property Name="DocumentoIdentidad" Type="varchar" MaxLength="100" />
+    <Property Name="FechaNacimiento" Type="date" />
+    <Property Name="Sexo" Type="varchar" MaxLength="50" />
+    <Property Name="Direccion" Type="varchar" MaxLength="100" />
+    <Property Name="Activo" Type="bit" />
+    <Property Name="FechaRegistro" Type="datetime" />
+    <Property Name="Fec_Ult_Mod" Type="datetime" />
+    <Property Name="Usu_Ult_Mod" Type="varchar" MaxLength="20" />
+    <Property Name="Curso" Type="int" />
+    <Property Name="Nota" Type="int" />
+    <Property Name="idDistrito" Type="int" />
+  </EntityType>
+  <EntityType Name="CURSO">
+    <Key>
+      <PropertyRef Name="IdCurso" />
+    </Key>
+    <Property Name="IdCurso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="100" />
+    <Property Name="Activo" Type="bit" />
+    <Property Name="FechaRegistro" Type="datetime" />
+    <Property Name="CODIGO" Type="varchar" MaxLength="10" />
+    <Property Name="IDNivel" Type="int" />
+  </EntityType>
+  <EntityType Name="Distrito">
+    <Key>
+      <PropertyRef Name="idDistrito" />
+    </Key>
+    <Property Name="idDistrito" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="DOCENTE">
+    <Key>
+      <PropertyRef Name="IdDocente" />
+    </Key>
+    <Property Name="IdDocente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ValorCodigo" Type="int" />
+    <Property Name="Codigo" Type="varchar" MaxLength="50" />
+    <Property Name="DocumentoIdentidad" Type="varchar" MaxLength="100" />
+    <Property Name="Nombres" Type="varchar" MaxLength="100" />
+    <Property Name="Apellidos" Type="varchar" MaxLength="100" />
+    <Property Name="FechaNacimiento" Type="date" />
+    <Property Name="Sexo" Type="varchar" MaxLength="50" />
+    <Property Name="GradoEstudio" Type="varchar" MaxLength="100" />
+    <Property Name="Direccion" Type="varchar" MaxLength="100" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="NumeroTelefono" Type="varchar" MaxLength="50" />
+    <Property Name="Activo" Type="bit" />
+    <Property Name="FechaRegistro" Type="datetime" />
+    <Property Name="Fec_Ult_Mod" Type="datetime" />
+    <Property Name="Usu_Ult_Mod" Type="varchar" MaxLength="20" />
+    <Property Name="IdCurso" Type="int" />
+    <Property Name="idDistrito" Type="int" />
+  </EntityType>
+  <EntityType Name="GRADO">
+    <Key>
+      <PropertyRef Name="IDGrado" />
+    </Key>
+    <Property Name="IDGrado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DesGrado" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="NIVEL">
+    <Key>
+      <PropertyRef Name="Nivel" />
+    </Key>
+    <Property Name="Nivel" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="desNivel" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Notas">
+    <Key>
+      <PropertyRef Name="IDNota" />
+    </Key>
+    <Property Name="IDNota" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nota1" Type="int" Nullable="false" />
+    <Property Name="Nota2" Type="int" Nullable="false" />
+    <Property Name="Nota3" Type="int" Nullable="false" />
+    <Property Name="Final" Type="int" Nullable="false" />
+    <Property Name="Retroalimentacion" Type="varchar" MaxLength="50" />
+    <Property Name="IdAlumno" Type="int" Nullable="false" />
+    <Property Name="IdCurso" Type="int" Nullable="false" />
+    <Property Name="FechaRegistro" Type="datetime" />
+    <Property Name="Usu_Docente" Type="varchar" MaxLength="20" />
+    <Property Name="IDPeriodo" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PERIODO">
+    <Key>
+      <PropertyRef Name="IDPeriodo" />
+    </Key>
+    <Property Name="IDPeriodo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DesPeriodo" Type="varchar" MaxLength="4" />
+  </EntityType>
+  <EntityType Name="PERMISOS">
+    <Key>
+      <PropertyRef Name="IdPermisos" />
+    </Key>
+    <Property Name="IdPermisos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdRol" Type="int" />
+    <Property Name="IdSubMenu" Type="int" />
+    <Property Name="Activo" Type="bit" />
+    <Property Name="FechaRegistro" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ROL">
+    <Key>
+      <PropertyRef Name="IdRol" />
+    </Key>
+    <Property Name="IdRol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="60" />
+    <Property Name="Activo" Type="bit" />
+    <Property Name="FechaRegistro" Type="datetime" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="USUARIO">
+    <Key>
+      <PropertyRef Name="IdUsuario" />
+    </Key>
+    <Property Name="IdUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombres" Type="varchar" MaxLength="100" />
+    <Property Name="Apellidos" Type="varchar" MaxLength="100" />
+    <Property Name="IdRol" Type="int" />
+    <Property Name="LoginUsuario" Type="varchar" MaxLength="50" />
+    <Property Name="LoginClave" Type="varchar" MaxLength="50" />
+    <Property Name="DescripcionReferencia" Type="varchar" MaxLength="50" />
+    <Property Name="IdReferencia" Type="int" />
+    <Property Name="Activo" Type="bit" />
+    <Property Name="FechaRegistro" Type="datetime" />
+    <Property Name="RolUsuario" Type="int" />
+  </EntityType>
+  <Association Name="FK__ALUMNO__Curso__607251E5">
+    <End Role="CURSO" Type="Self.CURSO" Multiplicity="0..1" />
+    <End Role="ALUMNO" Type="Self.ALUMNO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CURSO">
+        <PropertyRef Name="IdCurso" />
+      </Principal>
+      <Dependent Role="ALUMNO">
+        <PropertyRef Name="Curso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DOCENTE__IdCurso__6166761E">
+    <End Role="CURSO" Type="Self.CURSO" Multiplicity="0..1" />
+    <End Role="DOCENTE" Type="Self.DOCENTE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CURSO">
+        <PropertyRef Name="IdCurso" />
+      </Principal>
+      <Dependent Role="DOCENTE">
+        <PropertyRef Name="IdCurso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Notas__IdCurso__55BFB948">
+    <End Role="CURSO" Type="Self.CURSO" Multiplicity="1" />
+    <End Role="Notas" Type="Self.Notas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CURSO">
+        <PropertyRef Name="IdCurso" />
+      </Principal>
+      <Dependent Role="Notas">
+        <PropertyRef Name="IdCurso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PERMISOS__IdRol__30F848ED">
+    <End Role="ROL" Type="Self.ROL" Multiplicity="0..1" />
+    <End Role="PERMISOS" Type="Self.PERMISOS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROL">
+        <PropertyRef Name="IdRol" />
+      </Principal>
+      <Dependent Role="PERMISOS">
+        <PropertyRef Name="IdRol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__USUARIO__IdRol__36B12243">
+    <End Role="ROL" Type="Self.ROL" Multiplicity="0..1" />
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROL">
+        <PropertyRef Name="IdRol" />
+      </Principal>
+      <Dependent Role="USUARIO">
+        <PropertyRef Name="IdRol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_distrito">
+    <End Role="Distrito" Type="Self.Distrito" Multiplicity="0..1" />
+    <End Role="ALUMNO" Type="Self.ALUMNO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Distrito">
+        <PropertyRef Name="idDistrito" />
+      </Principal>
+      <Dependent Role="ALUMNO">
+        <PropertyRef Name="idDistrito" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_distritoDoce">
+    <End Role="Distrito" Type="Self.Distrito" Multiplicity="0..1" />
+    <End Role="DOCENTE" Type="Self.DOCENTE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Distrito">
+        <PropertyRef Name="idDistrito" />
+      </Principal>
+      <Dependent Role="DOCENTE">
+        <PropertyRef Name="idDistrito" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IDNivel">
+    <End Role="NIVEL" Type="Self.NIVEL" Multiplicity="0..1" />
+    <End Role="CURSO" Type="Self.CURSO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NIVEL">
+        <PropertyRef Name="Nivel" />
+      </Principal>
+      <Dependent Role="CURSO">
+        <PropertyRef Name="IDNivel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IDPeriodo">
+    <End Role="PERIODO" Type="Self.PERIODO" Multiplicity="1" />
+    <End Role="Notas" Type="Self.Notas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PERIODO">
+        <PropertyRef Name="IDPeriodo" />
+      </Principal>
+      <Dependent Role="Notas">
+        <PropertyRef Name="IDPeriodo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="IdAlumno">
+    <End Role="ALUMNO" Type="Self.ALUMNO" Multiplicity="1" />
+    <End Role="Notas" Type="Self.Notas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ALUMNO">
+        <PropertyRef Name="IdAlumno" />
+      </Principal>
+      <Dependent Role="Notas">
+        <PropertyRef Name="IdAlumno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="get_notas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDCurso" Type="int" Mode="In" />
+    <Parameter Name="IDAlumno" Type="int" Mode="In" />
+    <Parameter Name="IDPeriodo" Type="int" Mode="In" />
+  </Function>
+  <Function Name="get_rol" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="LoginUsuario" Type="varchar" Mode="In" />
+    <Parameter Name="LoginClave" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="get_top_alumnos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="maximo" Type="int" Mode="In" />
+  </Function>
+  <Function Name="login_usuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="usuario" Type="varchar" Mode="In" />
+    <Parameter Name="clave" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="set_curso_docente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idcurso" Type="int" Mode="In" />
+    <Parameter Name="iddocente" Type="int" Mode="In" />
+  </Function>
+  <Function Name="set_imagen_curso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="imagen" Type="image" Mode="In" />
+    <Parameter Name="idcurso" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_ActulizarDocente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_docente" Type="int" Mode="In" />
+    <Parameter Name="nombre" Type="varchar" Mode="In" />
+    <Parameter Name="apellido" Type="varchar" Mode="In" />
+    <Parameter Name="DocumentoIdentidad" Type="varchar" Mode="In" />
+    <Parameter Name="FechaNacimiento" Type="date" Mode="In" />
+    <Parameter Name="Sexo" Type="varchar" Mode="In" />
+    <Parameter Name="Ciudad" Type="int" Mode="In" />
+    <Parameter Name="Direccion" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_EliminarDocente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="codigo" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_filtroAlumno" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="apellidos" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_filtroDocente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="apellidos" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_InsertarDocente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="valorCodigo" Type="int" Mode="In" />
+    <Parameter Name="codigo" Type="varchar" Mode="In" />
+    <Parameter Name="DocumentoIdentidad" Type="varchar" Mode="In" />
+    <Parameter Name="Nombres" Type="varchar" Mode="In" />
+    <Parameter Name="Apellidos" Type="varchar" Mode="In" />
+    <Parameter Name="FechaNacimiento" Type="date" Mode="In" />
+    <Parameter Name="Sexo" Type="varchar" Mode="In" />
+    <Parameter Name="gradoEstudio" Type="varchar" Mode="In" />
+    <Parameter Name="Ciudad" Type="int" Mode="In" />
+    <Parameter Name="Direccion" Type="varchar" Mode="In" />
+    <Parameter Name="email" Type="varchar" Mode="In" />
+    <Parameter Name="telefono" Type="varchar" Mode="In" />
+    <Parameter Name="fechaRegistro" Type="date" Mode="In" />
+  </Function>
+  <Function Name="sp_ListarDistritos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_ActualizarPermisos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Detalle" Type="xml" Mode="In" />
+    <Parameter Name="Resultado" Type="bit" Mode="InOut" />
+  </Function>
+  <Function Name="usp_AsginarCursos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="xml" Type="xml" Mode="In" />
+    <Parameter Name="Resultado" Type="bit" Mode="InOut" />
+  </Function>
+  <Function Name="usp_DetalleCursoNivel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDCurso" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_DetalleDocenteCurso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_EditarAlumno" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdAlumno" Type="int" Mode="In" />
+    <Parameter Name="Codigo" Type="varchar" Mode="In" />
+    <Parameter Name="Nombres" Type="varchar" Mode="In" />
+    <Parameter Name="Apellidos" Type="varchar" Mode="In" />
+    <Parameter Name="DocumentoIdentidad" Type="varchar" Mode="In" />
+    <Parameter Name="FechaNacimiento" Type="date" Mode="In" />
+    <Parameter Name="Sexo" Type="varchar" Mode="In" />
+    <Parameter Name="Ciudad" Type="int" Mode="In" />
+    <Parameter Name="Direccion" Type="varchar" Mode="In" />
+    <Parameter Name="Activo" Type="bit" Mode="In" />
+    <Parameter Name="Usuario" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="usp_EditarCurso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdCurso" Type="int" Mode="In" />
+    <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="Activo" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="usp_EditarDocente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdDocente" Type="int" Mode="In" />
+    <Parameter Name="Codigo" Type="varchar" Mode="In" />
+    <Parameter Name="DocumentoIdentidad" Type="varchar" Mode="In" />
+    <Parameter Name="Nombres" Type="varchar" Mode="In" />
+    <Parameter Name="Apellidos" Type="varchar" Mode="In" />
+    <Parameter Name="FechaNacimiento" Type="date" Mode="In" />
+    <Parameter Name="Sexo" Type="varchar" Mode="In" />
+    <Parameter Name="GradoEstudio" Type="varchar" Mode="In" />
+    <Parameter Name="Ciudad" Type="int" Mode="In" />
+    <Parameter Name="Direccion" Type="varchar" Mode="In" />
+    <Parameter Name="Email" Type="varchar" Mode="In" />
+    <Parameter Name="NumeroTelefono" Type="varchar" Mode="In" />
+    <Parameter Name="Activo" Type="bit" Mode="In" />
+    <Parameter Name="Usuario" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="usp_EditarGradoSeccion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdGradoSeccion" Type="int" Mode="In" />
+    <Parameter Name="DescripcionGrado" Type="varchar" Mode="In" />
+    <Parameter Name="DescripcionSeccion" Type="varchar" Mode="In" />
+    <Parameter Name="Activo" Type="bit" Mode="In" />
+    <Parameter Name="Resultado" Type="bit" Mode="InOut" />
+  </Function>
+  <Function Name="usp_EditarNivel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdNivel" Type="int" Mode="In" />
+    <Parameter Name="IdPeriodo" Type="int" Mode="In" />
+    <Parameter Name="DescripcionNivel" Type="varchar" Mode="In" />
+    <Parameter Name="DescripcionTurno" Type="varchar" Mode="In" />
+    <Parameter Name="HoraInicio" Type="time" Mode="In" />
+    <Parameter Name="HoraFin" Type="time" Mode="In" />
+    <Parameter Name="Activo" Type="bit" Mode="In" />
+    <Parameter Name="Resultado" Type="bit" Mode="InOut" />
+  </Function>
+  <Function Name="usp_EditarPeriodo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdPeriodo" Type="int" Mode="In" />
+    <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="FechaInicio" Type="date" Mode="In" />
+    <Parameter Name="FechaFin" Type="date" Mode="In" />
+    <Parameter Name="Activo" Type="bit" Mode="In" />
+    <Parameter Name="Resultado" Type="bit" Mode="InOut" />
+  </Function>
+  <Function Name="usp_EliminarAlumno" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdAlumno" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_EliminarCurricula" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdCurricula" Type="int" Mode="In" />
+    <Parameter Name="Resultado" Type="bit" Mode="InOut" />
+  </Function>
+  <Function Name="usp_EliminarCurso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdCurso" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_EliminarDocenteCurso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdDocenteCurso" Type="int" Mode="In" />
+    <Parameter Name="Resultado" Type="bit" Mode="InOut" />
+  </Function>
+  <Function Name="usp_EliminarGradoSeccion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdGradoSeccion" Type="int" Mode="In" />
+    <Parameter Name="Resultado" Type="bit" Mode="InOut" />
+  </Function>
+  <Function Name="usp_EliminarHorario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdHorario" Type="int" Mode="In" />
+    <Parameter Name="Resultado" Type="bit" Mode="InOut" />
+  </Function>
+  <Function Name="usp_EliminarNivel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdNivel" Type="int" Mode="In" />
+    <Parameter Name="Resultado" Type="bit" Mode="InOut" />
+  </Function>
+  <Function Name="usp_EliminarPeriodo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdPeriodo" Type="int" Mode="In" />
+    <Parameter Name="Resultado" Type="bit" Mode="InOut" />
+  </Function>
+  <Function Name="usp_EliminarRol" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdRol" Type="int" Mode="In" />
+    <Parameter Name="Resultado" Type="bit" Mode="InOut" />
+  </Function>
+  <Function Name="usp_EliminarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdUsuario" Type="int" Mode="In" />
+    <Parameter Name="Resultado" Type="bit" Mode="InOut" />
+  </Function>
+  <Function Name="usp_ListarAlumno" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_ListarCurso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_ListarCursosAsignados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_ListarDocente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_ListarDocenteCurso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_ListarGradoSeccion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_ListarHorario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_ListarNivel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_ListarNivelDetalle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_ListarNombresDocentes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_ListarPeriodo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_LoginUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Usuario" Type="varchar" Mode="In" />
+    <Parameter Name="Clave" Type="varchar" Mode="In" />
+    <Parameter Name="IdUsuario" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="usp_ModificarRol" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdRol" Type="int" Mode="In" />
+    <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="Activo" Type="bit" Mode="In" />
+    <Parameter Name="Resultado" Type="bit" Mode="InOut" />
+  </Function>
+  <Function Name="usp_ModificarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdUsuario" Type="int" Mode="In" />
+    <Parameter Name="Nombres" Type="varchar" Mode="In" />
+    <Parameter Name="Apellidos" Type="varchar" Mode="In" />
+    <Parameter Name="IdRol" Type="int" Mode="In" />
+    <Parameter Name="Usuario" Type="varchar" Mode="In" />
+    <Parameter Name="Clave" Type="varchar" Mode="In" />
+    <Parameter Name="DescripcionReferencia" Type="varchar" Mode="In" />
+    <Parameter Name="IdReferencia" Type="int" Mode="In" />
+    <Parameter Name="Activo" Type="bit" Mode="In" />
+    <Parameter Name="Resultado" Type="bit" Mode="InOut" />
+  </Function>
+  <Function Name="usp_ObtenerClalificacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdNivel" Type="int" Mode="In" />
+    <Parameter Name="IdGradoSeccion" Type="int" Mode="In" />
+    <Parameter Name="IdCurso" Type="int" Mode="In" />
+    <Parameter Name="IdAlumno" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_ObtenerCurricula" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdNivel" Type="int" Mode="In" />
+    <Parameter Name="IdGradoSeccion" Type="int" Mode="In" />
+    <Parameter Name="IdCurso" Type="int" Mode="In" />
+    <Parameter Name="IdDocente" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_ObtenerDetalleUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_ObtenerMatricula" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_ObtenerPermisos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdRol" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_ObtenerRoles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_ObtenerUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_RegistrarAlumno" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Nombres" Type="varchar" Mode="In" />
+    <Parameter Name="Apellidos" Type="varchar" Mode="In" />
+    <Parameter Name="DocumentoIdentidad" Type="varchar" Mode="In" />
+    <Parameter Name="FechaNacimiento" Type="date" Mode="In" />
+    <Parameter Name="Sexo" Type="varchar" Mode="In" />
+    <Parameter Name="Ciudad" Type="int" Mode="In" />
+    <Parameter Name="Direccion" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="usp_RegistrarCalificacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="xml" Type="xml" Mode="In" />
+    <Parameter Name="Resultado" Type="bit" Mode="InOut" />
+  </Function>
+  <Function Name="usp_RegistrarCurricula" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdNivel" Type="int" Mode="In" />
+    <Parameter Name="IdGradoSeccion" Type="int" Mode="In" />
+    <Parameter Name="IdCurso" Type="int" Mode="In" />
+    <Parameter Name="IdDocente" Type="int" Mode="In" />
+    <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="Resultado" Type="bit" Mode="InOut" />
+  </Function>
+  <Function Name="usp_RegistrarCurso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="Codigo" Type="varchar" Mode="In" />
+    <Parameter Name="Nivel" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="usp_RegistrarDocente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="DocumentoIdentidad" Type="varchar" Mode="In" />
+    <Parameter Name="Nombres" Type="varchar" Mode="In" />
+    <Parameter Name="Apellidos" Type="varchar" Mode="In" />
+    <Parameter Name="FechaNacimiento" Type="date" Mode="In" />
+    <Parameter Name="Sexo" Type="varchar" Mode="In" />
+    <Parameter Name="GradoEstudio" Type="varchar" Mode="In" />
+    <Parameter Name="Ciudad" Type="int" Mode="In" />
+    <Parameter Name="Direccion" Type="varchar" Mode="In" />
+    <Parameter Name="Email" Type="varchar" Mode="In" />
+    <Parameter Name="NumeroTelefono" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="usp_RegistrarDocenteCurso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdNivel" Type="int" Mode="In" />
+    <Parameter Name="IdGradoSeccion" Type="int" Mode="In" />
+    <Parameter Name="IdCurso" Type="int" Mode="In" />
+    <Parameter Name="IdDocente" Type="int" Mode="In" />
+    <Parameter Name="Resultado" Type="bit" Mode="InOut" />
+  </Function>
+  <Function Name="usp_RegistrarGradoSeccion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="DescripcionGrado" Type="varchar" Mode="In" />
+    <Parameter Name="DescripcionSeccion" Type="varchar" Mode="In" />
+    <Parameter Name="Resultado" Type="bit" Mode="InOut" />
+  </Function>
+  <Function Name="usp_RegistrarHorario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdNivel" Type="int" Mode="In" />
+    <Parameter Name="IdGradoSeccion" Type="int" Mode="In" />
+    <Parameter Name="IdCurso" Type="int" Mode="In" />
+    <Parameter Name="DiaSemana" Type="varchar" Mode="In" />
+    <Parameter Name="HoraInicio" Type="datetime" Mode="In" />
+    <Parameter Name="HoraFin" Type="datetime" Mode="In" />
+    <Parameter Name="Resultado" Type="bit" Mode="InOut" />
+  </Function>
+  <Function Name="usp_RegistrarMatricula" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="xml" Type="xml" Mode="In" />
+    <Parameter Name="Resultado" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="usp_RegistrarNivel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdPeriodo" Type="int" Mode="In" />
+    <Parameter Name="DescripcionNivel" Type="varchar" Mode="In" />
+    <Parameter Name="DescripcionTurno" Type="varchar" Mode="In" />
+    <Parameter Name="HoraInicio" Type="time" Mode="In" />
+    <Parameter Name="HoraFin" Type="time" Mode="In" />
+    <Parameter Name="Resultado" Type="bit" Mode="InOut" />
+  </Function>
+  <Function Name="usp_RegistrarNivelDetalle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="xml" Type="xml" Mode="In" />
+    <Parameter Name="Resultado" Type="bit" Mode="InOut" />
+  </Function>
+  <Function Name="usp_RegistrarPeriodo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="FechaInicio" Type="date" Mode="In" />
+    <Parameter Name="FechaFin" Type="date" Mode="In" />
+    <Parameter Name="Resultado" Type="bit" Mode="InOut" />
+  </Function>
+  <Function Name="usp_RegistrarRol" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+    <Parameter Name="Resultado" Type="bit" Mode="InOut" />
+  </Function>
+  <Function Name="usp_RegistrarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Nombres" Type="varchar" Mode="In" />
+    <Parameter Name="Apellidos" Type="varchar" Mode="In" />
+    <Parameter Name="IdRol" Type="int" Mode="In" />
+    <Parameter Name="Usuario" Type="varchar" Mode="In" />
+    <Parameter Name="Clave" Type="varchar" Mode="In" />
+    <Parameter Name="DescripcionReferencia" Type="varchar" Mode="In" />
+    <Parameter Name="IdReferencia" Type="int" Mode="In" />
+    <Parameter Name="Resultado" Type="bit" Mode="InOut" />
+  </Function>
+  <Function Name="usp_RegistrarVacantes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="xml" Type="xml" Mode="In" />
+    <Parameter Name="Resultado" Type="bit" Mode="InOut" />
+  </Function>
+  <Function Name="usp_ReporteAlumno" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Nombres" Type="varchar" Mode="In" />
+    <Parameter Name="Apellidos" Type="varchar" Mode="In" />
+    <Parameter Name="Codigo" Type="varchar" Mode="In" />
+    <Parameter Name="DocumentoIdentidad" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="usp_ReporteMatricula" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CodigoMatricula" Type="varchar" Mode="In" />
+    <Parameter Name="SituacionMatricula" Type="varchar" Mode="In" />
+    <Parameter Name="CodigoAlumno" Type="varchar" Mode="In" />
+    <Parameter Name="DocumentoIdentidad" Type="varchar" Mode="In" />
+    <Parameter Name="Nombres" Type="varchar" Mode="In" />
+    <Parameter Name="Apellidos" Type="varchar" Mode="In" />
+    <Parameter Name="Periodo" Type="varchar" Mode="In" />
+    <Parameter Name="NivelAcademico" Type="varchar" Mode="In" />
+    <Parameter Name="GradoSeccion" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="BDCOLEGIOModelStoreContainer">
+    <EntitySet Name="ALUMNO" EntityType="Self.ALUMNO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CURSO" EntityType="Self.CURSO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Distrito" EntityType="Self.Distrito" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DOCENTE" EntityType="Self.DOCENTE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GRADO" EntityType="Self.GRADO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NIVEL" EntityType="Self.NIVEL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Notas" EntityType="Self.Notas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PERIODO" EntityType="Self.PERIODO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PERMISOS" EntityType="Self.PERMISOS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ROL" EntityType="Self.ROL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__ALUMNO__Curso__607251E5" Association="Self.FK__ALUMNO__Curso__607251E5">
+      <End Role="CURSO" EntitySet="CURSO" />
+      <End Role="ALUMNO" EntitySet="ALUMNO" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DOCENTE__IdCurso__6166761E" Association="Self.FK__DOCENTE__IdCurso__6166761E">
+      <End Role="CURSO" EntitySet="CURSO" />
+      <End Role="DOCENTE" EntitySet="DOCENTE" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Notas__IdCurso__55BFB948" Association="Self.FK__Notas__IdCurso__55BFB948">
+      <End Role="CURSO" EntitySet="CURSO" />
+      <End Role="Notas" EntitySet="Notas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PERMISOS__IdRol__30F848ED" Association="Self.FK__PERMISOS__IdRol__30F848ED">
+      <End Role="ROL" EntitySet="ROL" />
+      <End Role="PERMISOS" EntitySet="PERMISOS" />
+    </AssociationSet>
+    <AssociationSet Name="FK__USUARIO__IdRol__36B12243" Association="Self.FK__USUARIO__IdRol__36B12243">
+      <End Role="ROL" EntitySet="ROL" />
+      <End Role="USUARIO" EntitySet="USUARIO" />
+    </AssociationSet>
+    <AssociationSet Name="fk_distrito" Association="Self.fk_distrito">
+      <End Role="Distrito" EntitySet="Distrito" />
+      <End Role="ALUMNO" EntitySet="ALUMNO" />
+    </AssociationSet>
+    <AssociationSet Name="fk_distritoDoce" Association="Self.fk_distritoDoce">
+      <End Role="Distrito" EntitySet="Distrito" />
+      <End Role="DOCENTE" EntitySet="DOCENTE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IDNivel" Association="Self.FK_IDNivel">
+      <End Role="NIVEL" EntitySet="NIVEL" />
+      <End Role="CURSO" EntitySet="CURSO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IDPeriodo" Association="Self.FK_IDPeriodo">
+      <End Role="PERIODO" EntitySet="PERIODO" />
+      <End Role="Notas" EntitySet="Notas" />
+    </AssociationSet>
+    <AssociationSet Name="IdAlumno" Association="Self.IdAlumno">
+      <End Role="ALUMNO" EntitySet="ALUMNO" />
+      <End Role="Notas" EntitySet="Notas" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
